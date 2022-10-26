@@ -2,6 +2,21 @@
 
 require "dbBroker.php";
 
+session_start();
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $uname = $_POST['username'];
+    $upass = $_POST['password'];
+    $user_id = 1;
+
+    foreach ($baza as $user) {
+        if ($user['username'] == $uname && $user['password'] == $upass) {
+            header('Location: prodavnica.php');
+            exit();
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +41,6 @@ require "dbBroker.php";
                     <input type="password" name="password" required>
                     <button type="submit" name="submit">Prijavi se</button>
                 </div>
-
-
             </form>
         </div>
 
