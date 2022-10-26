@@ -7,10 +7,11 @@ session_start();
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $uname = $_POST['username'];
     $upass = $_POST['password'];
-    $user_id = 1;
+    //$user_id = 1;
 
     foreach ($baza as $user) {
         if ($user['username'] == $uname && $user['password'] == $upass) {
+            $_SESSION['user_id'] = $user['id'];
             header('Location: prodavnica.php');
             exit();
         }
